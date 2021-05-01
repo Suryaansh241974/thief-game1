@@ -1,18 +1,20 @@
 var thief;
 var diamond;
-
+var youWin;
 var bodyGuard;
 var thiefImage;
 var diamondImage;
-
+var youWinImage;
 var bodyGuardImage;  
-
+var youCaught;
+var youCaughtImage;
+  
   function preload(){
 thiefImage = loadImage ("images/thief.png");
 diamondImage = loadImage ("images/diamond.png");
 bodyGuardImage = loadImage ("images/bodyguard.png");
-
-
+youWinImage = loadImage ("images/You win.png");
+youCaughtImage = loadImage ("images/you caught.png");
   }
   
  
@@ -33,8 +35,15 @@ bodyGuardImage = loadImage ("images/bodyguard.png");
   bodyGuard.scale=0.3;
   bodyGuard.velocityX=20;
 
- 
- 
+  youWin = createSprite(400,200,10,10);
+  youWin.scale=0.5;
+  youWin.addImage("youWinImage",youWinImage);
+  youWin.visible=false;
+
+  youCaught = createSprite(400,200,10,10);
+  youCaught.scale=0.5;
+  youCaught.addImage("youCaughtImage",youCaughtImage);
+  youCaught.visible=false;
 
 }
 
@@ -46,7 +55,10 @@ function draw() {
   bodyGuard.bounceOff(edges[2]);
   bodyGuard.bounceOff(edges[3]);
 
-  
+  thief.collide(edges[0]);
+  thief.collide(edges[1]);
+  thief.collide(edges[2]);
+  thief.collide(edges[3]);
 
 if(keyDown("UP_ARROW")){
   thief.y=thief.y-10;
